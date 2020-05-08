@@ -148,21 +148,7 @@ LinkedList.prototype.addInPos = function(pos, value){
 }
   return true;
 }
-// SI pos es > 0 y pos es > this.size return false
-// SINO declaras una var
-// SI pos === 0
-// node.next --> this.head
-// this.head = node
-// SINO
-// current = this.head
-// declaras una nueva variable = o
-// MIENTRAS la nueva variable sea menor a pos
-// la nueva variable ++
-// previo = actual
-// actual = actual.next
-// node.next = actual
-// previo.next= node
-// return true
+
 
 // EJERCICIO 5
 // Implementar el método reverse dentro del prototype de LinkedList que invierta el orden de la lista
