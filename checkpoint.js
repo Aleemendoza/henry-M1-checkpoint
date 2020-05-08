@@ -43,7 +43,14 @@ const {
 // allí la recursión
 
 var objContains = function(obj, prop, value){
- 
+
+  if(obj.hasOwnProperty(prop) && obj.prop.value === value ){
+    return true;
+  }
+if(obj.hasOwnProperty(prop) != prop ) return false;
+
+
+
 }
 
 
@@ -59,6 +66,10 @@ var objContains = function(obj, prop, value){
 
 var countArray = function(array){
   
+
+  if(array === []){
+    return 0;
+  }
 }
 
 // ---------------------
@@ -78,6 +89,9 @@ var countArray = function(array){
 //    lista.size(); --> 3
 
 LinkedList.prototype.size = function(){
+
+    return 
+  
  
 }
 
@@ -184,8 +198,24 @@ var generateBST = function(array){
 //    [Donde 2 sería el número sobre el cuál queremos saber su posición en el array]
 
 
-var binarySearch = function (array, target) {
-
+var binarySearch = function (array ,target) {
+  var primero = 0;
+  var ultimo = array.length - 1;
+  var posicion = -1;
+  var numEncontrado = false;
+  var numDelMedio;
+  while(numEncontrado === false && primero <= ultimo){
+    numDelMedio = Math.floor((primero + ultimo)/2);
+    if(array[numDelMedio] === target ){
+      numEncontrado = true;
+      posicion = numDelMedio;
+    } else if (array[numDelMedio] > target) {
+      ultimo = numDelMedio - 1;
+    } else {
+      primero = numDelMedio + 1;
+    }
+  }
+  return posicion;
   
 }
 
@@ -199,7 +229,22 @@ var binarySearch = function (array, target) {
 
 
 var selectionSort = function(array) {
-  
+  for (var i = 0; i < array.length; i++) {
+
+    let min = i; //  storing the index of minimum element
+
+    for (var j = i + 1; j < array.length; j++) {
+        if (array[min] > array[j]) {
+            min = j; // updating the index of minimum element
+        }
+    }
+
+    if (i !== min) {
+        [array[ i ],array[min]]= [array[min],array[ i ]];
+    }
+}
+return array
+
 }
 
 // ----- Closures -----
@@ -217,6 +262,13 @@ var selectionSort = function(array) {
 //    sumaDiez(11); --> Devolverá 21 (Ya que 11 + 10 = 21)
 
 function closureSum(numFijo) {
+
+  return function(num){
+
+    return num + numFijo;
+
+  }
+
  
 }
 
