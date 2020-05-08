@@ -42,15 +42,20 @@ const {
 // Pista: utilizar typeof para determinar si el valor de una propiedad es un objeto para aplicar
 // allí la recursión
 
-var objContains = function(obj, prop, value){
-
-  if(obj.hasOwnProperty(prop) && obj.prop.value === value ){
-    return true;
-  }
-if(obj.hasOwnProperty(prop) != prop ) return false;
-
-
-
+  var objContains = function (obj, prop, value) {
+    if (typeof obj !== 'Object') {
+      return false;
+    } else if (typeof prop === 'Object') {
+      for (var prop in obj) {
+        if (obj.hasOwnProperty(prop) && obj[prop] === value) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+    return false;
+  
 }
 
 
