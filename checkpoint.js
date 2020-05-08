@@ -65,11 +65,19 @@ if(obj.hasOwnProperty(prop) != prop ) return false;
 // [Para más información del método: https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/isArray]
 
 var countArray = function(array){
-  
+    if (!array.length) return 0;
+    for( var i = 0; i < array.length; i++){
+  if (Array.isArray(array[i])) countArray(array[i])
+    else  {
+      total(array[i])
+    }
+}
+return contador;
+}
+var contador = 0;
+function total(valor){
+contador += valor;
 
-  if(array === []){
-    return 0;
-  }
 }
 
 // ---------------------
@@ -88,12 +96,20 @@ var countArray = function(array){
 //    lista.add(3);
 //    lista.size(); --> 3
 
-LinkedList.prototype.size = function(){
-
-    return 
+  LinkedList.prototype.size = function () {
+    if (this.head === null) {
+      return 0;
+    } else {
+      var count = 0;
+      var current = this.head;
+      while (current != null) {
+        count = count + 1;
+        current = current.next;
+      }
+      return count;
+    }
+  }
   
- 
-}
 
 
 // EJERCICIO 4
@@ -111,10 +127,42 @@ LinkedList.prototype.size = function(){
 //    Suponiendo que la lista está vacía: Head --> null
 //    lista.addInPos(2, 3); --> Debería devolver false ya que no es posible agregar en la posición 2
 //    sin antes tener cargada la posición 0 y 1.
-
 LinkedList.prototype.addInPos = function(pos, value){
-  
+  if (pos > 0 && pos > this.size()) return false;
+  else {
+      var node = new Node(value);
+      if (pos === 0) {
+          node.next = this.head;
+          this.head = node;
+      } else {
+          valorActual = this.head;
+          var contador = 0;
+  while (contador < pos) {
+      contador++;
+      previous = valorActual;
+      valorActual = valorActual.next;
+  }
+  node.next = valorActual;
+  previous.next = node;
 }
+}
+  return true;
+}
+// SI pos es > 0 y pos es > this.size return false
+// SINO declaras una var
+// SI pos === 0
+// node.next --> this.head
+// this.head = node
+// SINO
+// current = this.head
+// declaras una nueva variable = o
+// MIENTRAS la nueva variable sea menor a pos
+// la nueva variable ++
+// previo = actual
+// actual = actual.next
+// node.next = actual
+// previo.next= node
+// return true
 
 // EJERCICIO 5
 // Implementar el método reverse dentro del prototype de LinkedList que invierta el orden de la lista
@@ -124,7 +172,9 @@ LinkedList.prototype.addInPos = function(pos, value){
 //    Lista nueva luego de aplicar el reverse: Head --> 13 --> 10 --> 4 --> 1 --> null
 
 LinkedList.prototype.reverse = function(){
- 
+    var array;
+    return array.reverse();
+
 }
 
 
