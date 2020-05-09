@@ -157,9 +157,11 @@ LinkedList.prototype.addInPos = function(pos, value){
 //    Lista original: Head --> 1 --> 4 --> 10 --> 13 --> null
 //    Lista nueva luego de aplicar el reverse: Head --> 13 --> 10 --> 4 --> 1 --> null
 
-LinkedList.prototype.reverse = function(){
-    var array;
-    return array.reverse();
+LinkedList.prototype.reverse = function(array){
+
+  
+
+
 
 }
 
@@ -213,8 +215,15 @@ var cardGame = function(mazoUserA, mazoUserB){
 //      \
 //       5
 
-var generateBST = function(array){
- 
+var generateBST = function (array) {
+  var arbolBinario = new BinarySearchTree(array[0]);
+  array.shift();
+  array.forEach(cont => arbolBinario.insert(cont));
+  return arbolBinario;
+    
+
+
+
 }
 
 
