@@ -64,19 +64,19 @@ var objContains = function (obj, prop, value) {
 // Pista: utilizar el método Array.isArray() para determinar si algun elemento de array es un array anidado
 // [Para más información del método: https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/isArray]
 
-var countArray = function(array){
-    if (!array.length) return 0;
-    for( var i = 0; i < array.length; i++){
-  if (Array.isArray(array[i])) countArray(array[i])
-    else  {
+var countArray = function (array) {
+  if (!array.length) return 0;
+  for (var i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) countArray(array[i])
+    else {
       total(array[i])
     }
-}
-return contador;
+  }
+  return contador;
 }
 var contador = 0;
-function total(valor){
-contador += valor;
+function total(valor) {
+  contador += valor;
 
 }
 
@@ -96,20 +96,20 @@ contador += valor;
 //    lista.add(3);
 //    lista.size(); --> 3
 
-  LinkedList.prototype.size = function () {
-    if (this.head === null) {
-      return 0;
-    } else {
-      var count = 0;
-      var current = this.head;
-      while (current != null) {
-        count = count + 1;
-        current = current.next;
-      }
-      return count;
+LinkedList.prototype.size = function () {
+  if (this.head === null) {
+    return 0;
+  } else {
+    var count = 0;
+    var current = this.head;
+    while (current != null) {
+      count = count + 1;
+      current = current.next;
     }
+    return count;
   }
-  
+}
+
 
 
 // EJERCICIO 4
@@ -127,25 +127,25 @@ contador += valor;
 //    Suponiendo que la lista está vacía: Head --> null
 //    lista.addInPos(2, 3); --> Debería devolver false ya que no es posible agregar en la posición 2
 //    sin antes tener cargada la posición 0 y 1.
-LinkedList.prototype.addInPos = function(pos, value){
+LinkedList.prototype.addInPos = function (pos, value) {
   if (pos > 0 && pos > this.size()) return false;
   else {
-      var node = new Node(value);
-      if (pos === 0) {
-          node.next = this.head;
-          this.head = node;
-      } else {
-          valorActual = this.head;
-          var contador = 0;
-  while (contador < pos) {
-      contador++;
-      previous = valorActual;
-      valorActual = valorActual.next;
+    var node = new Node(value);
+    if (pos === 0) {
+      node.next = this.head;
+      this.head = node;
+    } else {
+      valorActual = this.head;
+      var contador = 0;
+      while (contador < pos) {
+        contador++;
+        previous = valorActual;
+        valorActual = valorActual.next;
+      }
+      node.next = valorActual;
+      previous.next = node;
+    }
   }
-  node.next = valorActual;
-  previous.next = node;
-}
-}
   return true;
 }
 
@@ -157,14 +157,12 @@ LinkedList.prototype.addInPos = function(pos, value){
 //    Lista original: Head --> 1 --> 4 --> 10 --> 13 --> null
 //    Lista nueva luego de aplicar el reverse: Head --> 13 --> 10 --> 4 --> 1 --> null
 
-LinkedList.prototype.reverse = function(array){
+LinkedList.prototype.reverse = function () {
 
-  
 
 
 
 }
-
 
 // ----------------------
 
@@ -192,9 +190,18 @@ LinkedList.prototype.reverse = function(array){
 //    - mazoUserA = [2,10,11]
 //    - mazoUserB = [6,9,10,3,6,4]
 
-var cardGame = function(mazoUserA, mazoUserB){
+var cardGame = function (mazoUserA, mazoUserB) { 
+while (mazoUserA.size() !== 0 && mazoUserB.size() !== 0) { 
+  var cartaA = mazoUserA.dequeue(); 
+  var cartaB = mazoUserB.dequeue(); 
+  if (cartaA > cartaB) { mazoUserA.enqueue(cartaA); mazoUserA.enqueue(cartaB); } 
+else if (cartaA < cartaB) { mazoUserB.enqueue(cartaB); mazoUserB.enqueue(cartaA); } } 
+if (mazoUserA.size() === mazoUserB.size()) { return "Game tie!" } 
+else if (mazoUserA.size() === 0) { return "B wins!"; } 
+else if (mazoUserB.size() === 0) { return "A wins!"; } } 
 
-}
+
+
 
 // ---------------
 
@@ -216,13 +223,12 @@ var cardGame = function(mazoUserA, mazoUserB){
 //       5
 
 var generateBST = function (array) {
+
+
   var arbolBinario = new BinarySearchTree(array[0]);
   array.shift();
   array.forEach(cont => arbolBinario.insert(cont));
   return arbolBinario;
-    
-
-
 
 }
 
@@ -243,15 +249,15 @@ var generateBST = function (array) {
 //    [Donde 2 sería el número sobre el cuál queremos saber su posición en el array]
 
 
-var binarySearch = function (array ,target) {
+var binarySearch = function (array, target) {
   var primero = 0;
   var ultimo = array.length - 1;
   var posicion = -1;
   var numEncontrado = false;
   var numDelMedio;
-  while(numEncontrado === false && primero <= ultimo){
-    numDelMedio = Math.floor((primero + ultimo)/2);
-    if(array[numDelMedio] === target ){
+  while (numEncontrado === false && primero <= ultimo) {
+    numDelMedio = Math.floor((primero + ultimo) / 2);
+    if (array[numDelMedio] === target) {
       numEncontrado = true;
       posicion = numDelMedio;
     } else if (array[numDelMedio] > target) {
@@ -261,7 +267,7 @@ var binarySearch = function (array ,target) {
     }
   }
   return posicion;
-  
+
 }
 
 // EJERCICIO 9
@@ -273,22 +279,22 @@ var binarySearch = function (array ,target) {
 //     selectionSort([1, 6, 2, 5, 3, 4]) --> [1, 2, 3, 4, 5, 6]
 
 
-var selectionSort = function(array) {
+var selectionSort = function (array) {
   for (var i = 0; i < array.length; i++) {
 
     let min = i; //  storing the index of minimum element
 
     for (var j = i + 1; j < array.length; j++) {
-        if (array[min] > array[j]) {
-            min = j; // updating the index of minimum element
-        }
+      if (array[min] > array[j]) {
+        min = j; // updating the index of minimum element
+      }
     }
 
     if (i !== min) {
-        [array[ i ],array[min]]= [array[min],array[ i ]];
+      [array[i], array[min]] = [array[min], array[i]];
     }
-}
-return array
+  }
+  return array
 
 }
 
@@ -308,13 +314,13 @@ return array
 
 function closureSum(numFijo) {
 
-  return function(num){
+  return function (num) {
 
     return num + numFijo;
 
   }
 
- 
+
 }
 
 // -------------------
@@ -329,8 +335,13 @@ function closureSum(numFijo) {
 //    const anagrams = allAnagrams('abc');
 //    console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
 
-var allAnagrams = function(string, array, index) {
- 
+var allAnagrams = function (string) {
+
+
+
+
+
+
 };
 
 module.exports = {
