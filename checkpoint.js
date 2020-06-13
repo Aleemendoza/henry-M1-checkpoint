@@ -192,13 +192,23 @@ LinkedList.prototype.reverse = function () {
 
 var cardGame = function (mazoUserA, mazoUserB) { 
 while (mazoUserA.size() !== 0 && mazoUserB.size() !== 0) { 
-  var cartaA = mazoUserA.dequeue(); 
-  var cartaB = mazoUserB.dequeue(); 
-  if (cartaA > cartaB) { mazoUserA.enqueue(cartaA); mazoUserA.enqueue(cartaB); } 
-else if (cartaA < cartaB) { mazoUserB.enqueue(cartaB); mazoUserB.enqueue(cartaA); } } 
-if (mazoUserA.size() === mazoUserB.size()) { return "Game tie!" } 
-else if (mazoUserA.size() === 0) { return "B wins!"; } 
-else if (mazoUserB.size() === 0) { return "A wins!"; } } 
+  var userA = mazoUserA.dequeue(); 
+  var userB = mazoUserB.dequeue(); 
+  if (userA > userB) { 
+    mazoUserA.enqueue(userA); 
+    mazoUserA.enqueue(userB); 
+  } 
+
+else if (userA < userB) {
+   mazoUserB.enqueue(userB); 
+   mazoUserB.enqueue(userA); 
+  } 
+} 
+if (mazoUserA.size() === mazoUserB.size()) return "Game tie!"; 
+else if (mazoUserA.size() === 0) return "B wins!"; 
+else if (mazoUserB.size() === 0) return "A wins!"; 
+
+} 
 
 
 
@@ -337,8 +347,23 @@ function closureSum(numFijo) {
 
 var allAnagrams = function (string) {
 
-
-
+  if(string.length < 2) return [string]; 
+  else{
+    var anagrams = []; 
+    for(var i = 0; i < string.length; i++){
+    var array = string.split(""); 
+    var word = array[i]; 
+    array.splice( i, 1 ); 
+  var join = allAnagrams(array.join("")); 
+  for (var j = 0; j < join.length; j++){ 
+    boolean = true; 
+    anagrams.forEach(function(item){ 
+    if(item === word + join[j] ) 
+    boolean = false; 
+  }) 
+  if(boolean){ anagrams.push (word + join[j]); } } 
+  
+  return anagrams; } }; 
 
 
 

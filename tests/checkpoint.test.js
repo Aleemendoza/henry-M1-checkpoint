@@ -96,7 +96,7 @@ describe('Checkpoint Tests', function() {
       var revertedLinkedList = linkedList.reverse();
       expect(revertedLinkedList.remove().value).to.equal(1);
       expect(revertedLinkedList.remove().value).to.equal(2);
-      expect(revertedLinkedList.remove().value).to.equal(3);      
+      expect(revertedLinkedList.remove().value).to.equal(3);2      
     });
   });
 
